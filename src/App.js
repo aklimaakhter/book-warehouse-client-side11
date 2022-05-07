@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Pages/About/About';
 import Home from './Pages/Home/Home/Home';
-import Items from './Pages/Home/Items/Items';
+import Items from './Pages/Home/Inventories/Inventories';
 import KidsCollections from './Pages/Home/KidsCollections/KidsCollections';
 import InventoryDetail from './Pages/InventoryDetail/InventoryDetail';
 import Footer from './Pages/Shared/Footer/Footer';
@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/items' element={<Items></Items>}></Route>
+        <Route path='/inventories' element={<Items></Items>}></Route>
         <Route path='/kidsCollection' element={<KidsCollections></KidsCollections>}></Route>
         <Route path='/item/:itemId' element={<InventoryDetail></InventoryDetail>}></Route>
         <Route path='/about' element={<About></About>}></Route>

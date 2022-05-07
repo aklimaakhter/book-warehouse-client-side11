@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Item.css'
 
-const Item = ({ item }) => {
-    const { id, img, name, description, price, quantity, supplierName, sold } = item;
+
+const Inventory = ({ inventory }) => {
+    const { id, img, name, description, price, quantity, supplierName } = inventory;
     const navigate = useNavigate();
 
-    const navigateToItemDetail = id => {
+    const navigateToInventoryDetail = id => {
         navigate(`/item/${id}`);
     }
     return (
@@ -19,7 +19,7 @@ const Item = ({ item }) => {
                     <p class="card-text">{description}</p>
                     <p class="card-text">{quantity}</p>
                     <p class="card-text">{supplierName}</p>
-                    <button onClick={() => navigateToItemDetail(id)} className='btn btn-primary'>Update</button>
+                    <button onClick={() => navigateToInventoryDetail(id)} className='btn btn-primary'>Update</button>
                 </div>
             </div>
         </div>
@@ -27,4 +27,4 @@ const Item = ({ item }) => {
     );
 };
 
-export default Item;
+export default Inventory;
