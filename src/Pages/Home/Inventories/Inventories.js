@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import useInventory from '../../../hooks/useInventory';
 import Inventory from '../Inventory/Inventory';
 
