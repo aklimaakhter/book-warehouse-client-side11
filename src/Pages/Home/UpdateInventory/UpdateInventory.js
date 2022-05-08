@@ -2,12 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const Inventory = ({ inventory }) => {
+const UpdateInventory = ({ inventory }) => {
     const { id, img, name, description, price, quantity, supplierName } = inventory;
     const navigate = useNavigate();
 
     const navigateToInventoryDetail = id => {
-        navigate(`/item/${id}`);
+        navigate(`/inventory/${id}`);
     }
     return (
         <div className='g-4 col-sm-12 col-md-6 col-lg-4'>
@@ -19,7 +19,7 @@ const Inventory = ({ inventory }) => {
                     <p class="card-text">{description}</p>
                     <p class="card-text">Quantity: {quantity}</p>
                     <p class="card-text">{supplierName}</p>
-                    <button onClick={() => navigateToInventoryDetail(id)} className='btn btn-primary'>Delete</button>
+                    <button onClick={() => navigateToInventoryDetail(id)} className='btn btn-primary'>Update</button>
                 </div>
             </div>
         </div>
@@ -27,4 +27,4 @@ const Inventory = ({ inventory }) => {
     );
 };
 
-export default Inventory;
+export default UpdateInventory;

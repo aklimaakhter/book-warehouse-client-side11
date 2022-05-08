@@ -7,37 +7,34 @@ import auth from '../../../firebase.init';
 import logo from '../../../images/logo/logo.png';
 
 const Header = () => {
-    // const [user] = useAuthState();
+    const [user] = useAuthState(auth);
 
-    // const handleSignOut = () => {
-    //     signOut(auth);
-    // }
+    const handleSignOut = () => {
+        signOut(auth);
+    }
 
     return (
-        <Navbar collapseOnSelect expand="lg" sticky='top' bg="primary" variant="dark">
+        <Navbar collapseOnSelect expand="lg" sticky='top' bg="primary" variant="dark" >
             <Container>
                 <Navbar.Brand as={Link} to="/">
                     <img src={logo} alt="" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="home#inventories">Inventories</Nav.Link>
-                        <Nav.Link href="home#kidsCollections">KidsCollections</Nav.Link>
+                    <Nav className="me-auto ">
+                        <Nav.Link className='text-white' href="home#inventories">Inventories</Nav.Link>
+                        <Nav.Link className='text-white' href="home#kidsCollections">KidsCollections</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link as={Link} to="about">About</Nav.Link>
-                        <Nav.Link as={Link} to="blog">Blog</Nav.Link>
-                        {/* {
+                        <Nav.Link className='text-white' as={Link} to="about">About</Nav.Link>
+                        <Nav.Link className='text-white' as={Link} to="blog">Blog</Nav.Link>
+                        {
                             user ?
-                            <button className='btn btn-link text-white text-decoration-none' onClick={handleSignOut}>Sign Out</button>
+                            <button className='btn btn-link text-white text-decoration-none' onClick={handleSignOut}>Log Out</button>
                             :
-                                <Nav.Link as={Link} to="login">
+                                <Nav.Link className='text-white' as={Link} to="login">
                                     Login
-                                </Nav.Link>} */}
-                        <Nav.Link as={Link} to="login">
-                            Login
-                        </Nav.Link>
+                                </Nav.Link>}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
