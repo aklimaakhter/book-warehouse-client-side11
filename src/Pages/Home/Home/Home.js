@@ -14,7 +14,7 @@ const Home = () => {
         <>
             <Banner></Banner>
             <div id='inventories' className='container mt-5'>
-                <h2 className='text-primary text-center'> Book Items:{inventories.length}</h2>
+                <h2 className='text-primary text-center'> Book Items</h2>
                 <div className='row mb-5'>
                     {
                         inventories.slice(0, 6).map(inventory =><Inventory

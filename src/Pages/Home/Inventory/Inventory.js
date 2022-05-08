@@ -15,9 +15,9 @@ const Inventory = ({ inventory }) => {
                 <img className='w-100' src={img} class="card-img-top" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title">{name}</h5>
-                    <p class="card-text">{price}</p>
+                    <p class="card-text">Price: {price}</p>
                     <p class="card-text">{description}</p>
-                    <p class="card-text">{quantity}</p>
+                    <p class="card-text">Quantity: {quantity}</p>
                     <p class="card-text">{supplierName}</p>
                     <button onClick={() => navigateToInventoryDetail(id)} className='btn btn-primary'>Update</button>
                 </div>

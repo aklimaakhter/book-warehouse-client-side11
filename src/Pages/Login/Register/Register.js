@@ -1,46 +1,66 @@
-import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './Register.css';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+// import SocialLogin from '../SocialLogin/SocialLogin';
+// import Loading from '../../Shared/Loading/Loading';
+
+
 
 const Register = () => {
+    const [agree, setAgree] = useState(false);
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
 
     const navigate = useNavigate();
 
-const handleRegister = event =>{
-    event.preventDefault();
-    const name= event.target.name.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+    // if (loading || updating) {
+    //     return <Loading></Loading>
+    // }
 
-    console.log(name,email,password);
-}
-    const navigateLogin = event => {
+    const navigateLogin = () => {
         navigate('/login');
     }
+
+    if (user) {
+        console.log('user', user);
+    }
+    const handleRegister = async event => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        // const agree = event.target.terms.checked;
+        console.log(name, email, password);
+
+
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        console.log('Updated profile');
+        navigate('/home')
+    }
     return (
-        <div className='w-50 mx-auto'>
-            <h2 className='text-center text-primary mt-5'>Please Register</h2>
-
-            <Form onSubmit={handleRegister}>
-                <Form.Group className="mb-2" controlId="formBasicEmail">
-                    <Form.Control type="text" placeholder="your name" required />
-
-                </Form.Group>
-                <Form.Group className="mb-2" controlId="formBasicEmail">
-                    <Form.Control type="email" placeholder="Enter email" required />
-
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Control type="password" placeholder="Password" required />
-                </Form.Group>
-
-                <Button variant="primary w-50 mx-auto d-block mb-2" type="submit">
-                    Register
-                </Button>
-            </Form>
-            <p className='text-center'>Already have an account? <Link to='/login'className='text-primary pe-auto text-decoration-none'
-                onClick={navigateLogin}>Please Login</Link></p>
+        <div className='register-form'>
+            <h2 style={{ textAlign: "center" }}>Please Register</h2>
+            <form onSubmit={handleRegister}>
+                <input type="text" name="name" id="" placeholder='Your name' />
+                <input type="email" name="email" id="" placeholder='Your email' required />
+                <input type="password" name="password" id="" placeholder='password' required />
+                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+                <label className={`ps-2 ${agree ? '' : 'text-danger'}`} htmlFor="terms">Accept Terms and Conditions</label>
+                <input
+                    disabled={!agree}
+                    className='w-50 mx-auto d-block btn btn-primary mt-2' type="submit" value="Register" />
+            </form>
+            <p className='mt-5'>Already have an account? <Link to='/login' onClick={navigateLogin}>Please Register</Link></p>
+            {/* <SocialLogin></SocialLogin> */}
         </div>
     );
 };
