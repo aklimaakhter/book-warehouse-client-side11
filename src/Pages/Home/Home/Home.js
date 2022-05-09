@@ -1,6 +1,10 @@
 import React from 'react';
+import { ToastContainer } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
 import useInventory from '../../../hooks/useInventory';
+import Loading from '../../Shared/Loading/Loading';
 import Banner from '../Banner/Banner';
 import KidsCollections from '../KidsCollections/KidsCollections';
 import UpdateInventory from '../UpdateInventory/UpdateInventory';
@@ -9,6 +13,11 @@ import UpdateInventory from '../UpdateInventory/UpdateInventory';
 
 const Home = () => {
     const [inventories, setInventories] = useInventory();
+    const [loading] = useAuthState(auth);
+
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <>
             <Banner></Banner>
@@ -31,7 +40,7 @@ const Home = () => {
                 </Link>
             </div>
             <KidsCollections></KidsCollections>
-
+            
         </>
     );
 };
