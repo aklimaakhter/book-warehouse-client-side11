@@ -5,8 +5,6 @@ const Loading = () => {
     return (
         <div style={{height:'400px'}} className="w-100 d-flex justify-content-center align-items-center">
             <Spinner animation="border" variant="primary" />
-            <Spinner animation="border" variant="secondary" />
-            <Spinner animation="border" variant="success" />
         </div>
     );
 };

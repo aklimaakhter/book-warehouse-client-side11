@@ -14,6 +14,7 @@ import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 import Checkout from './Pages/Checkout/Checkout/Checkout';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
+import Inventories from './Pages/Home/Inventories/Inventories';
 
 
 
@@ -24,13 +25,14 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/inventories' element={<Items></Items>}></Route>
+        <Route path='/inventories' element={<Inventories></Inventories>}></Route>
         <Route path='/kidsCollection' element={<KidsCollections></KidsCollections>}></Route>
         <Route path='/inventory/:inventoryId' element={
           <RequireAuth>
             <InventoryDetail></InventoryDetail>
           </RequireAuth>
         }></Route>
+        <Route path='/checkout' element={<Checkout></Checkout>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/blog' element={
         <RequireAuth>
