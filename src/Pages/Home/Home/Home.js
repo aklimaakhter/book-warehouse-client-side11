@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
-import useInventory from '../../../hooks/useInventory';
 import FeaturedBook from '../../FeaturedBook/FeaturedBook';
-import Loading from '../../Shared/Loading/Loading';
+import Footer from '../../Shared/Footer/Footer';
 import Banner from '../Banner/Banner';
 import KidsCollections from '../KidsCollections/KidsCollections';
 import UpdateInventory from '../UpdateInventory/UpdateInventory';
@@ -19,30 +17,28 @@ const Home = () => {
     }, []);
     return (
         <>
-            <Banner></Banner>
-            <FeaturedBook></FeaturedBook>
-            {/* {loading ? <Loading /> :'false'} */}
-            <div id='inventories' className='container'>
-                <h2 className='text-primary text-center'> Book Items</h2>
-                <div className='row mb-5'>
-                    {
-                        inventories.slice(0, 6).map(inventory => <UpdateInventory
-                            key={inventory._id}
-                            inventory={inventory}
-                        ></UpdateInventory>)
-
-                    }
+            
+                <Banner></Banner>
+                <FeaturedBook></FeaturedBook>
+                <div id='inventories' className='container'>
+                    <h2 className='text-primary text-center'> Book Items</h2>
+                    <div className='row mb-5'>
+                        {
+                            inventories.slice(0, 6).map(inventory => <UpdateInventory
+                                key={inventory._id}
+                                inventory={inventory}
+                            ></UpdateInventory>)
+                        }
+                    </div>
                 </div>
-            </div>
-         
-            <KidsCollections></KidsCollections>
+                <KidsCollections></KidsCollections>
             <div className='text-center'>
                 <Link to='/inventories'
                     className='btn btn-primary m-5'>
                     Manage Inventories
                 </Link>
             </div>
-            
+            <Footer></Footer>
         </>
     );
 };

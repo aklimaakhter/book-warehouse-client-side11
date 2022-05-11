@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 import Inventory from '../Inventory/Inventory';
 
 
@@ -14,25 +15,28 @@ const Inventories = () => {
 
     
     return (
-        <div id='inventories' className='container '>
-            <div className=' d-block mx-auto mt-5 '>
-                <h2 className='text-primary text-center p-5'> Book Items:{inventories.length}</h2>
-                <div className='row m-5'>
-                    {
-                        inventories.map(inventory => <Inventory
-                            key={inventory.id}
-                            inventory={inventory}
-                        ></Inventory>)
-                    }
-                </div>
-                <div className='text-center'>
-                    <Link to='/inventories'
-                        className='btn btn-primary m-5'>
-                        Add New Item
-                    </Link>
+        <>
+            <div id='inventories' className='container '>
+                <div className=' d-block mx-auto mt-5 '>
+                    <h2 className='text-primary text-center p-2'> Book Items:{inventories.length}</h2>
+                    <div className='row m-5'>
+                        {
+                            inventories.map(inventory => <Inventory
+                                key={inventory.id}
+                                inventory={inventory}
+                            ></Inventory>)
+                        }
+                    </div>
+
                 </div>
             </div>
-        </div>
+            <div className='text-center'>
+                <Link to='/addItems'
+                    className='btn btn-primary m-5'>
+                    Add New Items
+                </Link>
+            </div>
+        </>
     );
 };
 

@@ -1,0 +1,16 @@
+.inventory-detail {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px
+}
+.restock{
+    margin-top: 250px;
+    text-align: left;
+}
+
+/* Featured Book Responsive */
+@media only screen and (max-width:576px) {
+    .inventory-detail {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
