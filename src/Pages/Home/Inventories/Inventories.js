@@ -1,15 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useInventory from '../../../hooks/useInventory';
+
 import Inventory from '../Inventory/Inventory';
 
 
 const Inventories = () => {
-    const [inventories, setInventories] =useInventory();
+    const [inventories, setInventories] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/inventory')
+            .then(res => res.json())
+            .then(data => setInventories(data));
+    }, []);
 
     
     return (
-        <div id='inventories' className='container'>
-            <div className=' d-block mx-auto mt-5'>
+        <div id='inventories' className='container '>
+            <div className=' d-block mx-auto mt-5 '>
                 <h2 className='text-primary text-center p-5'> Book Items:{inventories.length}</h2>
                 <div className='row m-5'>
                     {

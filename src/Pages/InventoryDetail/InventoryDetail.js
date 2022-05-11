@@ -14,10 +14,10 @@ const InventoryDetail = () => {
             <div className='text-center mt-5'>
                 <div className='row mb-5'>
                     {
-                        inventories.map(inventory => <UpdateInventory>
-                            key={inventory.id}
+                        inventories.map(inventory => <Checkout
+                             key={inventory.id}
                             inventory={inventory}
-                        </UpdateInventory>)
+                            ></Checkout>)
                     }
                 </div>
             </div>

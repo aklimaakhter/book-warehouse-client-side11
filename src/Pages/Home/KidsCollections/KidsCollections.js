@@ -20,9 +20,12 @@ const collections = [
 const KidsCollections = () => {
     return (
         
-            <div id="kidsCollections" className='container bg-primary' style={{ height: '550px' }}>
-                <h2 className='text-white text-center p-4'>Our Kids Collections</h2>
-                <div className='row'>
+        <div id="kidsCollections" className='container ' >
+            
+            
+                <h2 className='text-primary text-center py-3'>Our Kids Collections</h2>
+
+                <div className='row mx-auto' style={{ height: '450px' }}>
                     {
                         collections.map(collection => <KidCollection
                             key={collection.id}
@@ -30,7 +33,10 @@ const KidsCollections = () => {
                         ></KidCollection>)
                     }
                 </div>
-            </div>
+               </div>
+            
+            
+           
        
     );
 };

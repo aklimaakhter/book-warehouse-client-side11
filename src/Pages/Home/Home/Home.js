@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import useInventory from '../../../hooks/useInventory';
 import FeaturedBook from '../../FeaturedBook/FeaturedBook';
@@ -10,21 +11,23 @@ import UpdateInventory from '../UpdateInventory/UpdateInventory';
 
 
 const Home = () => {
-    const [inventories, setInventories] = useInventory();
-    const [loading, setLoading] = useState(true);
-
-    
+    const [inventories, setInventories] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/inventory')
+            .then(res => res.json())
+            .then(data => setInventories(data));
+    }, []);
     return (
         <>
             <Banner></Banner>
             <FeaturedBook></FeaturedBook>
             {/* {loading ? <Loading /> :'false'} */}
-            <div id='inventories' className='container g-5'>
+            <div id='inventories' className='container'>
                 <h2 className='text-primary text-center'> Book Items</h2>
                 <div className='row mb-5'>
                     {
                         inventories.slice(0, 6).map(inventory => <UpdateInventory
-                            key={inventory.id}
+                            key={inventory._id}
                             inventory={inventory}
                         ></UpdateInventory>)
 
@@ -39,6 +42,7 @@ const Home = () => {
                     Manage Inventories
                 </Link>
             </div>
+            
         </>
     );
 };
