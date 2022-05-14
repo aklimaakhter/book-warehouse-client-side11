@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import {Link, useParams } from 'react-router-dom';
+import useInventoryDetail from '../../hooks/useInventoryDetail';
 import './InventoryDetail.css';
 
 
 const InventoryDetail = () => {
     const { inventoryId } = useParams();
-    const [inventory, setInventory] =useState({});
-
-    useEffect(()=>{
-        const url =`http://localhost:5000/inventory/${inventoryId}`
-        fetch(url)
-        .then(res =>res.json())
-        .then(data=>setInventory(data))
-    },[])
+   const [inventory] = useInventoryDetail(inventoryId);
     
 
     return (
         <div className=' container'>
                 <div className=' inventory-detail'>
                     <div className='text-center mt-5 '>
-                        <h2>Welcome to my inventory</h2>
+                        <h2>Welcome to my inventory:{inventoryId}</h2>
                         <div className='d-flex justify-content-center mt-5'>
                             <div className="card  " style={{ width: "18rem", height: "600px" }}>
                                 <img style={{ height: '300px' }} src={inventory.img} cla57ssName="card-img-top" alt="..." />
@@ -42,7 +36,11 @@ const InventoryDetail = () => {
                         <button className='btn btn-primary mt-2 text-center'>Add</button>
                     </div>
                 </div>
-            
+            <div className='text-center'>
+                <Link to={`/checkout/${inventoryId}`}>
+                    <button className='btn btn-primary'>Proceed Checkout</button>
+                </Link>
+            </div>
             <div className='text-center'>
                 <Link to='/inventories'
                     className='btn btn-primary m-5'>

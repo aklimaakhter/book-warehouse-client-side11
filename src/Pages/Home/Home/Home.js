@@ -31,14 +31,13 @@ const Home = () => {
                         }
                     </div>
                 </div>
-                <KidsCollections></KidsCollections>
             <div className='text-center'>
                 <Link to='/inventories'
                     className='btn btn-primary m-5'>
                     Manage Inventories
                 </Link>
             </div>
-            <Footer></Footer>
+                <KidsCollections></KidsCollections>
         </>
     );
 };

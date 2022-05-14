@@ -19,7 +19,7 @@ const Inventory = ({ inventory }) => {
                     <p className="card-text">{description}</p>
                     <p className="card-text">Quantity: {quantity}</p>
                     <p className="card-text">{supplierName}</p>
-                    <button className='btn btn-primary'>Delete</button>
+                    <button onClick={() => navigateToInventoryDetail()} className='btn btn-primary'>Delete</button>
                 </div>
             </div>
         </div>

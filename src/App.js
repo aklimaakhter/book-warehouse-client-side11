@@ -15,6 +15,10 @@ import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
 import Inventories from './Pages/Home/Inventories/Inventories';
 import AddItems from './Pages/AddItems/AddItems';
 import ManageItems from './Pages/ManageItems/ManageItems';
+import MyItems from './Pages/MyItems/MyItems';
+import Contact from './Pages/Contact/Contact';
+import { ToastContainer } from 'react-bootstrap';
+import CheckOut from './Pages/CheckOut/CheckOut';
 
 
 
@@ -32,10 +36,20 @@ function App() {
             <InventoryDetail></InventoryDetail>
           </RequireAuth>
         }></Route>
+        <Route path='/checkout/:inventoryId' element={
+          <RequireAuth>
+            <CheckOut></CheckOut>
+          </RequireAuth>
+        }></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/blog' element={
         <RequireAuth>
           <Blog></Blog>
+        </RequireAuth>
+        }></Route>
+        <Route path='/contact' element={
+        <RequireAuth>
+          <Contact></Contact>
         </RequireAuth>
         }></Route>
         <Route path='/addItems' element={
@@ -48,11 +62,17 @@ function App() {
           <ManageItems></ManageItems>
         </RequireAuth>
         }></Route>
+        <Route path='/myItems' element={
+        <RequireAuth>
+          <MyItems></MyItems>
+        </RequireAuth>
+        }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
-      
+      <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }
