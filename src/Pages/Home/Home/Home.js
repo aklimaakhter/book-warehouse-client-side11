@@ -10,11 +10,16 @@ import UpdateInventory from '../UpdateInventory/UpdateInventory';
 
 const Home = () => {
     const [inventories, setInventories] = useState([]);
+    const [loading , setLoading] = useState(false);
     useEffect(() => {
         fetch('http://localhost:5000/inventory')
             .then(res => res.json())
             .then(data => setInventories(data));
+            setLoading(true);
+            
     }, []);
+
+    
     return (
         <>
             

@@ -9,9 +9,13 @@ This project was bootstrapped with [Book Warehouse Management website ](https://
 * Email verification
 * Responsive website
 
-## Available Scripts
-
-In the project directory, you can run:
+## Frameworks and libraries
+* React firebase hooks
+* React router dom
+* React bootstrap
+* Vanilla css
+* bootstrap
+* React firebase form
 
 ### `npm start`
 
