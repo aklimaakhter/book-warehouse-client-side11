@@ -1,6 +1,13 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Book Warehouse Management website ](https://github.com/facebook/create-react-app).
+
+## Bullet Point 
+* Inventories
+* Protected route
+* Sign in and Register button toggle
+* Email verification
+* Responsive website
 
 ## Available Scripts
 

@@ -2,7 +2,7 @@ import { async } from '@firebase/util';
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -15,7 +15,10 @@ const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const navigate = useNavigate();
-    let errorElement;
+    const location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
+    
 
     const [
         signInWithEmailAndPassword,
@@ -25,27 +28,30 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
-   
+    let errorElement;
+
     if (loading || sending) {
         return <Loading></Loading>
     }
     if (user) {
-        navigate('/home');
+        // navigate(from, { replace: true });
     }
 
     if (error) {
-        errorElement = <div>
-            <p className='text-danger'>Error: {error.message}</p>
-        </div>
+        errorElement = <p className='text-danger'>Error: {error.message}</p> 
+           
+       
     }
     const handleSubmit = async event => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
-       await signInWithEmailAndPassword(email, password);
-        const { data } = await axios.post('http://localhost:5000/login',{email});
-         console.log(data);
+        await signInWithEmailAndPassword(email, password);
+        const { data } = await axios.post('http://localhost:5000/login', { email });
+        localStorage.setItem('accessToken', data.accessToken);
+        navigate(from, { replace: true });
+
 
     }
 
@@ -53,13 +59,13 @@ const Login = () => {
         navigate('/register');
     }
 
-    const resetPassword = async() =>{
+    const resetPassword = async () => {
         const email = emailRef.current.value;
-        if(email){
+        if (email) {
             await sendPasswordResetEmail(email);
             toast('Sent email');
         }
-        else{
+        else {
             toast('Please enter your email address')
         }
     }
@@ -87,7 +93,7 @@ const Login = () => {
             <p className='text-center'>Forget Password? <button className='btn btn-link text-primary pe-auto text-decoration-none'
                 onClick={resetPassword}>Reset Password</button></p>
             <SocialLogin></SocialLogin>
-            
+
         </div>
 
     );
