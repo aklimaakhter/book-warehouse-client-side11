@@ -8,7 +8,7 @@ import Inventory from '../Inventory/Inventory';
 const Inventories = () => {
     const [inventories, setInventories] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/inventory')
+        fetch('https://sleepy-bastion-71074.herokuapp.com/inventory')
             .then(res => res.json())
             .then(data => setInventories(data));
     }, []);

@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import axiosPrivate from '../../api/axiosPrivate';
 import auth from '../../firebase.init';
+import './MyItems.css'
 
 const MyItems = () => {
     const [user] = useAuthState(auth);
@@ -15,7 +16,7 @@ const MyItems = () => {
 
         const getOrders = async () => {
             const email = user.email;
-            const url = `http://localhost:5000/order?email=${email}`;
+            const url = `https://sleepy-bastion-71074.herokuapp.com/order?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
                 setOrders(data);
@@ -33,8 +34,19 @@ const MyItems = () => {
     }, [user])
 
     return (
-        <div className='text-center'>
-            <h3>My Items: {orders.length}</h3>
+        <div className='container'>
+            <h3 className='myItems-title'>My Items: {orders.length}</h3>
+            <div className='myItems-container' >
+                {
+                    orders.map(order => <div className='myItems'
+                        key={order._id}>
+                        <p>{order.inventory}</p>
+                        <p>{order.inventoryId}</p>
+                        <p>{order.email}</p>
+                        <button className='btn btn-primary'>Cancel</button>
+                    </div>)
+                }
+            </div>
         </div>
     );
 };

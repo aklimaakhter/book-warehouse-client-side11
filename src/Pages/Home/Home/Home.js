@@ -12,7 +12,7 @@ const Home = () => {
     const [inventories, setInventories] = useState([]);
     const [loading , setLoading] = useState(false);
     useEffect(() => {
-        fetch('http://localhost:5000/inventory')
+        fetch('https://sleepy-bastion-71074.herokuapp.com/inventory')
             .then(res => res.json())
             .then(data => setInventories(data));
             setLoading(true);
