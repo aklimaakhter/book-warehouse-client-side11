@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Book Warehouse Management website ](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Book Warehouse Management website ](https://book-warehouse-management.web.app/).
 
 ## Bullet Point 
 * Inventories
